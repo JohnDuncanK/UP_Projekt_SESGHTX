@@ -17,19 +17,19 @@
 //Bibliotek til håndtering af WiFi på ESP8266 som en Client
 //(enhed på et netværk, i modsætning til en router eller access point f.eks.)
 
-IPAddress ip(192, 168, 1, 80);
+IPAddress ip(192, 168, x, x);
 IPAddress dns(8, 8, 8, 8);
-IPAddress gateway(192, 168, 1, 1);
+IPAddress gateway(192, 168, x, x);
 //Funktion til definition af netværksinformationer på det lokale netværk (LAN)
 
-const char* ssid     = "Okapi"; //wifi-navn
-const char* password = "easytoremember"; //wifi-kode
+const char* ssid     = "wifiname"; //wifi-navn
+const char* password = "verydifficultpassword"; //wifi-kode
 //Login-oplysninger til WiFi
 
 #include <ESP8266HTTPClient.h>
 //Bibliotek til håndtering af datakommunikationsprotokollen HTTP på ESP8266
 
-const char* serverNavn = "http://192.168.2.6//post-esp-data.php";
+const char* serverNavn = "http://192.168.x.x//post-esp-data.php";
 //IP-adressen og scriptet (rettere sagt linket), som EPS8266 skal sende data til
 
 String apiKeyValue = "tPmAT5Ab3j7F9";
