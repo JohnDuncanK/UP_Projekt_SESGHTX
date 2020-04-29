@@ -52,7 +52,6 @@ if ($result = $conn->query($sql)) {
         $fugtighed_1 = $row["fugt"]; //Sætter variabel lig med værdien i kolonnnen "fugt" i den seneste række med data.
     }
     $result->free(); //Sletter den gemte data, som variablen $result har.
-    //echo "$temperatur_1,$temperatur_2,$fugtighed_1,$fugtighed_2,$Lokation_1,$Lokation_2,";
 }
 
 
