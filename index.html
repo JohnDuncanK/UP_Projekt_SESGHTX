@@ -91,9 +91,6 @@
                     document.getElementById("temp1").innerHTML = oplysninger[0]; //Skriver første værdi fra arrayet til ID'et: "temp-ind" i html
                     document.getElementById("fugt1").innerHTML = oplysninger[1]; //Skriver tredje værdi fra arrayet til ID'et: "fugt-ind" i html
                     document.getElementById("lok1").innerHTML = oplysninger[2]; //Skriver fjerde værdi fra arrayet til ID'et: "fugt-ud" i html
-                    document.getElementById("temp2").innerHTML = oplysninger[3]; //Skriver anden værdi fra arrayet til ID'et: "temp-ud" i html
-                    document.getElementById("fugt2").innerHTML = oplysninger[4]; //Skriver fjerde værdi fra arrayet til ID'et: "fugt-ud" i html
-                    document.getElementById("lok2").innerHTML = oplysninger[5]; //Skriver fjerde værdi fra arrayet til ID'et: "fugt-ud" i html
                 },
                 complete: function() { //Når alt behandling er færdig.
                     setTimeout(sendRequest, 1000); //Kalder funktionen "sendRequest" med et interval på 10 sekunder
