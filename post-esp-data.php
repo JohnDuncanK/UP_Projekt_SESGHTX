@@ -24,9 +24,6 @@ $username = "user";
 // Adgangskode for adgang til databasen
 $password = "covid19";
 
-// Keep this API Key value to be compatible with the ESP32 code provided in the project page. 
-// If you change this value, the ESP32 sketch needs to match
-
 //API-nøgle som skal matche samme ID, som EPS-modulet sender.
 $api_key_value = "tPmAT5Ab3j7F9";
 
