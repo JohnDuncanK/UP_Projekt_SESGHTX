@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Smart Mirror - EL-Teknik - Eksamen</title>
+
+        <!--        Gør der muligt, at kunne skrive æ, ø og å-->
+        <meta charset="UTF-8">  
+
+        <!--        Refererer til CSS-filen-->
+        <link rel="stylesheet" type="text/css" href="main.css">
+
+        <!--        Jquery library. Skal bruges til AJAX (skal vi bruge for at kunne reloade sensor værdier)-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    </head>
+    <body>
+        <div class="overlay"></div>
+<!--        Class "opdeler" deler nedstående ellementer i hver sin side.-->
+        <div class="opdeler" id="T">
+            
+<!--            Inhold der vises i venstre side-->
+            <div>
+<!--                Viser klokken-->
+                <h1><span id="time"></span></h1>
+<!--                Viser datoen-->
+                <h2 class="dato" id="dato"></h2>
+                
+<!--                Nedstående viser kalderen-->
+                <div class="kalender blok">
+                    <h2>Kalender</h2>
+
+<!--                    Henter kalender-widget vi lavede på feedwind.com-->
+                    <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" preloader-text="Loading" data-fw-param="125426/"></script> 
+                </div>
+<!--                Bruges blot til overdække text-->
+                <div class="sort-box"></div>
+            </div>
+            
+<!--            Indhold der vises i højre side-->
+            <div class="blok">
+                <h2>Vejret i Svendborg</h2>
+                
+<!--                Henter vejret vi fra forecast7.com -->
+                <a class="weatherwidget-io" href="https://forecast7.com/da/55d0710d61/svendborg/" data-font="Noto Sans" data-icons="Climacons" data-days="5" data-textcolor="#ffffff" >Svendborg, Denmark</a>
+
+                <script>
+                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                </script>
+
+
+<!--                Sectionen hvor værdierne fra sensorerne indskrives -->
+                <h2 style="margin-top: 70px">Vejret hos dig</h2>
+                
+<!--                Teksten af sensorens placering. Bliver indsat igennem javascript-->
+                <p style="margin-bottom: 0;"><strong id="lok1"></strong></p>
+                
+<!--                Skriver overskrifterne til sensorerne. Ved <span> bliver der indsat værdien af sensorene, igennem javascript.-->
+                <p style="margin-top: 0; margin-bottom: 0;">Temperaturen: <span id="temp1"></span>&#176;C</p>
+                <p style="margin-top: 0;">Fugtighedsniveau: <span id="fugt1"></span>%</p>
+                
+<!--                Teksten af sensorens placering. Bliver indsat igennem javascript-->
+                <p style="margin-bottom: 0;"><strong id="lok2"></strong></p>
+                
+<!--                Skriver overskrifterne til sensorerne. Ved <span> bliver der indsat værdien af sensorene, igennem javascript.-->
+                <p style="margin-top: 0; margin-bottom: 0;">Temperaturen: <span id="temp2"></span>&#176;C</p>
+                <p style="margin-top: 0;">Fugtighedsniveau: <span id="fugt2"></span>%</p>
+
+            </div>
+
+        </div>
+    </body>
+
+
+
+    <script>
+
+        sendRequest(); //Kalder funktionen sendRequest (nedstående funktion).
+        
+        
+        function sendRequest(){
+            //
+            $.ajax({
+                url: "main.php", //Henvender sig til PHP-filen og henter data.
+                success: //Hvis ovenstående process lykkes, kalder den nedenstående funktion.
+                function(data){
+                    //document.getElementById("temp").innerHTML = data; //insert text of test.php into your div
+                    
+                    var oplysninger = data.split(",");//Splitter dataen op. Splitter ved hvert komma (,). Indsætter værdierne i arrayet "oplysninger".
+                    document.getElementById("temp1").innerHTML = oplysninger[0]; //Skriver første værdi fra arrayet til ID'et: "temp-ind" i html
+                    document.getElementById("fugt1").innerHTML = oplysninger[1]; //Skriver tredje værdi fra arrayet til ID'et: "fugt-ind" i html
+                    document.getElementById("lok1").innerHTML = oplysninger[2]; //Skriver fjerde værdi fra arrayet til ID'et: "fugt-ud" i html
+                    document.getElementById("temp2").innerHTML = oplysninger[3]; //Skriver anden værdi fra arrayet til ID'et: "temp-ud" i html
+                    document.getElementById("fugt2").innerHTML = oplysninger[4]; //Skriver fjerde værdi fra arrayet til ID'et: "fugt-ud" i html
+                    document.getElementById("lok2").innerHTML = oplysninger[5]; //Skriver fjerde værdi fra arrayet til ID'et: "fugt-ud" i html
+                },
+                complete: function() { //Når alt behandling er færdig.
+                    setTimeout(sendRequest, 1000); //Kalder funktionen "sendRequest" med et interval på 10 sekunder
+                }
+            });
+        };
+
+    </script>
+
+    
+    
+    <script type="text/javascript">
+        function updateTime() {
+
+            var timer = new Date().getHours(); //Henter den lokale tid i timer fra computeren.
+            var minutter = new Date().getMinutes(); //Henter den lokale tid i minutter fra computeren.
+            var sekunder = new Date().getSeconds();
+
+            if (minutter < 10) { //Hvis minuttallet er under 10, skal den tilføje "0" før minuttallet - fx 2 minutter = 02 
+                minutter = "0" + minutter;
+            }
+            if (sekunder < 10) { //Hvis minuttallet er under 10, skal den tilføje "0" før minuttallet - fx 2 minutter = 02 
+                sekunder = "0" + sekunder;
+            }
+
+            var klokken = timer + ":" + minutter + "<span style='font-size:60%;'>:" + sekunder + "</span>"; //Samler nuværende time og minut til klokkeslæt 
+            setTimeout("updateTime()", 1000); //Stopper funktionen i 1 sekund
+            document.getElementById('time').innerHTML = klokken; //Skriver klokkeslættet ind på ID'et: "time" i html
+        }
+
+        updateTime(); //Kalder funktionen. Dvs. funktionen bliver kaldt hvert sekund.
+
+
+
+
+
+        var maanede;
+        switch (new Date().getMonth()) { //Henter den lokale månede fra computeren. Værdien kommer ud i tal 0-11. Derfor bruger vi en "switch" for at omskrive tallet til måneden i tekst.
+                
+            case 0:
+                maanede = "januar";
+                break;
+
+            case 1:
+                maanede = "februar";
+                break;
+
+            case 2:
+                maanede = "marts";
+                break;
+
+            case 3:
+                maanede = "april";
+                break;
+
+            case 4:
+                maanede = "maj";
+                break;
+
+            case 5:
+                maanede = "juni";
+                break;
+
+            case 6:
+                maanede = "juli";
+                break;
+
+            case 7:
+                maanede = "august";
+                break;
+
+            case 8:
+                maanede = "september";
+                break;
+
+            case 9:
+                maanede = "oktober";
+                break;
+
+            case 10:
+                maanede = "november";
+                break;
+
+            case 11:
+                maanede = "december";
+                break;
+
+        }   
+
+
+        var dato = new Date().getDate() + ". " + maanede + " " + new Date().getFullYear(); //Samler nuværende dag, månede og år til en samlet variabel.
+        document.getElementById("dato").innerHTML = dato; //Skriver datoen ind på ID'et: "dato" i html
+        
+        window.onload = SmoothLoad; //Når alt på hjemmesiden er loaded, bliver funktionen "SmoothLoad" kaldt.
+        function SmoothLoad() {
+            setTimeout(function() { //Vi burger timeout, da kalenderen bruger ca. 0,5 sekund yderligere på at loade. Vi bruger timeout, for at "sikre" alt er loaded færdigt, før hjemmesiden fremvises. Timeout er på 500 milisekunder.
+                document.getElementById("T").style.opacity = 1; //Her ændre vi opacity for alt indhold til "1". Dvs. at alt bliver 100% synligt - før var det 0%.
+            }, 500);
+        }
+    </script>
+    
+    
+    
+</html>
+
+
