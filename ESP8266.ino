@@ -17,13 +17,13 @@
 //Bibliotek til håndtering af WiFi på ESP8266 som en Client
 //(enhed på et netværk, i modsætning til en router eller access point f.eks.)
 
-IPAddress ip(192, 168, x, x);
+IPAddress ip(192, 168, x, x); //Denne definition skal ændres alt efter netværket ESP er forbundet til
 IPAddress dns(8, 8, 8, 8);
-IPAddress gateway(192, 168, x, x);
+IPAddress gateway(192, 168, x, x); //Samme gælder hér som for IPAddress ip();
 //Funktion til definition af netværksinformationer på det lokale netværk (LAN)
 
-const char* ssid     = "wifiname"; //wifi-navn
-const char* password = "verydifficultpassword"; //wifi-kode
+const char* ssid     = "wifiname"; //wifi-navn (redacted)
+const char* password = "verydifficultpassword"; //wifi-kode (redacted))
 //Login-oplysninger til WiFi
 
 #include <ESP8266HTTPClient.h>
