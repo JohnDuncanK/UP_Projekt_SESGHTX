@@ -57,6 +57,6 @@ if ($result = $conn->query($sql)) {
 
 
 $conn->close(); //Lukker forbindelsen til databasen.
-echo "$temperatur_1,$fugtighed_1,$placering_1,$temperatur_2,$fugtighed_2,$placering_2,"; //Sender dataen til html-filen, som bliver modtaget af javascript AJAX.
+echo "$temperatur_1,$fugtighed_1,$placering_1,"; //Sender dataen til html-filen, som bliver modtaget af javascript AJAX.
 
 ?> 
