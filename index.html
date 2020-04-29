@@ -84,7 +84,6 @@
                 url: "main.php", //Henvender sig til PHP-filen og henter data.
                 success: //Hvis ovenstående process lykkes, kalder den nedenstående funktion.
                 function(data){
-                    //document.getElementById("temp").innerHTML = data; //insert text of test.php into your div
                     
                     var oplysninger = data.split(",");//Splitter dataen op. Splitter ved hvert komma (,). Indsætter værdierne i arrayet "oplysninger".
                     document.getElementById("temp1").innerHTML = oplysninger[0]; //Skriver første værdi fra arrayet til ID'et: "temp-ind" i html
