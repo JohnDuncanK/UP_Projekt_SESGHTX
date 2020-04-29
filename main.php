@@ -44,7 +44,6 @@ $sql = "SELECT placering, temp, fugt FROM SensorData WHERE placering = 'Udenfor'
 
 //Opretter en forspørgelse til databasen med kriterierne vi lavede ved "$sql", og outputter dataen til variablen "$result".
 if ($result = $conn->query($sql)) {
-    
     //Tjekker hvis der er flere end 0 rækker med data, så vil funktionen "fetch_assoc()" skabe et array med al dataen, som vi looper igennem med while'en. While'en køre igennem arrayet med dataen, hvor der inde i while'en er variabler det blive sat lige med værdierne i arrayet.
     while ($row = $result->fetch_assoc()) {
         $placering_1 = $row["placering"]; //Sætter variabel lig med værdien i kolonnnen "placering" i den seneste række med data. 
