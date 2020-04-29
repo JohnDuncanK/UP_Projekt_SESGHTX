@@ -32,15 +32,15 @@ $api_key= $sensor = $placering = $temp = $fugt = "";
 
 //Tjekker om request/anmodningens metoden er "Post"
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $api_key = test_input($_POST["api_key"]); //Kalder funktionen "test-input" med den givende data. Dette er API-nøglen, som er sendt fra ESP-modulet.
+    $api_key = tjek_input($_POST["api_key"]); //Kalder funktionen "tjek_input" med den givende data. Dette er API-nøglen, som er sendt fra ESP-modulet.
     echo "entered first if-statement"; //Skal nok bare slettes
     
-    //Hvis variablen ESP-modulets API-nøgle  har samme værdi som API-nøglen, skal den kalde funktionen "test-input" for hver variabel med den givende data, der er sendt fra ESP-modulet.
+    //Hvis variablen ESP-modulets API-nøgle  har samme værdi som API-nøglen, skal den kalde funktionen "tjek_input" for hver variabel med den givende data, der er sendt fra ESP-modulet.
     if($api_key == $api_key_value) {
-        $sensor = test_input($_POST["sensor"]);
-        $placering = test_input($_POST["placering"]); 
-        $temp = test_input($_POST["temp"]); 
-        $fugt = test_input($_POST["fugt"]); 
+        $sensor = tjek_input($_POST["sensor"]);
+        $placering = tjek_input($_POST["placering"]); 
+        $temp = tjek_input($_POST["temp"]); 
+        $fugt = tjek_input($_POST["fugt"]); 
     echo "entered secound if-statement"; //Skal nok bare slettes
         
         // Opretter en forbindelse til databasen med de givne oplysninger: servername, username, password og databasenavn.
@@ -78,7 +78,7 @@ else {
     echo "Data fra ESP-modulet er ikke sendt.";
 }
 
-function test_input($data) {
+function tjek_input($data) {
     $data = trim($data); //Fjerner eventuelle mellemrum før og efter data'en.
     $data = stripslashes($data); //Fjerner backslash (\) fra dataen
     $data = htmlspecialchars($data); //Omskriver HTML operatører som: <>'"& til tekst. 
