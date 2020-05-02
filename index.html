@@ -56,8 +56,8 @@
                 <p style="margin-bottom: 0;"><strong id="lok1"></strong></p>
                 
 <!--                Skriver overskrifterne til sensorerne. Ved <span> bliver der indsat værdien af sensorene, igennem javascript.-->
-                <p style="margin-top: 0; margin-bottom: 0;">Temperaturen: <span id="temp1"></span>&#176;C</p>
-                <p style="margin-top: 0;">Fugtighedsniveau: <span id="fugt1"></span>%</p>
+                <p style="margin-top: 0; margin-bottom: 0;">Temperaturen: <span id="temp1"></span>&#176;C &nbsp;|&nbsp; Afv. &pm;<span id="afvg"></span></p>
+                <p style="margin-top: 0;">Fugtighedsniveau: <span id="fugt1"></span>%RH &nbsp;|&nbsp; Afv. &pm;3</p>
 
             </div>
 
@@ -77,6 +77,19 @@
                 function(data){
                     
                     var oplysninger = data.split(",");//Splitter dataen op. Splitter ved hvert komma (,). Indsætter værdierne i arrayet "oplysninger".
+                    
+                    var temp = parseFloat(oplysninger[0]);
+                    
+                    if (temp > 0 && temp < 85) {
+                            var afvigelse = "1.0";
+                        }
+                    else if (temp < 0 && temp < -20) {
+                            var afvigelse = "1.25";
+                        }
+                    else if (temp < -20 && temp < -40) {
+                            var afvigelse = "1.5";
+                        }
+                    
                     document.getElementById("temp1").innerHTML = oplysninger[0]; //Skriver første værdi fra arrayet til ID'et: "temp-ind" i html
                     document.getElementById("fugt1").innerHTML = oplysninger[1]; //Skriver tredje værdi fra arrayet til ID'et: "fugt-ind" i html
                     document.getElementById("lok1").innerHTML = oplysninger[2]; //Skriver fjerde værdi fra arrayet til ID'et: "fugt-ud" i html
