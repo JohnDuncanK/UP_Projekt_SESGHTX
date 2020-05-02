@@ -32,7 +32,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Tjekker forbindelsen
 if ($conn->connect_error) { 
-    //Hvis der ikke kan forbindes, kommer denne besked frem.
     echo("Der kunne ikke forbindes til serveren!");
 } 
 
