@@ -78,23 +78,23 @@
                     
                     var oplysninger = data.split(",");//Splitter dataen op. Splitter ved hvert komma (,). Indsætter værdierne i arrayet "oplysninger".
                     
-                    var temp = parseFloat(oplysninger[0]);
+                    var afv = parseFloat(oplysninger[0]); //Omskriver string til float
                     
-                    if (temp >= 0) {
+                    //Tjekker afvigelsen ift. temperatur
+                    if (afv >= 0) {
                             var afvigelse = "1.0";
                     }
-                    else if (temp < 0 && temp >= -20) {
+                    else if (afv < 0 && afv >= -20) {
                             var afvigelse = "1.25";
                     }
-                    else if (temp < -20) {
+                    else if (afv < -20) {
                             var afvigelse = "1.5";
                     }
-                    document.getElementById("afvg").innerHTML = afvigelse; //Skriver første værdi fra arrayet til ID'et: "temp-ind" i html
                     
-
-                    document.getElementById("temp1").innerHTML = oplysninger[0]; //Skriver første værdi fra arrayet til ID'et: "temp-ind" i html
-                    document.getElementById("fugt1").innerHTML = oplysninger[1]; //Skriver tredje værdi fra arrayet til ID'et: "fugt-ind" i html
-                    document.getElementById("lok1").innerHTML = oplysninger[2]; //Skriver fjerde værdi fra arrayet til ID'et: "fugt-ud" i html
+                    document.getElementById("afvg").innerHTML = afvigelse; //Indsætter afvigelsen 
+                    document.getElementById("temp1").innerHTML = oplysninger[0]; //Indsætter temperaturen
+                    document.getElementById("fugt1").innerHTML = oplysninger[1]; //Indsætter fugtighed
+                    document.getElementById("lok1").innerHTML = oplysninger[2]; //Indsætter lokationen
                 },
                 complete: function() { //Når alt behandling er færdig.
                     setTimeout(sendRequest, 1000); //Kalder funktionen "sendRequest" med et interval på 10 sekunder
