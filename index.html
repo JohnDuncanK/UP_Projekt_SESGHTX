@@ -75,11 +75,9 @@
 
     <script>
 
-        sendRequest(); //Kalder funktionen sendRequest (nedstående funktion).
+        sendAnmodning(); //Kalder funktionen sendRequest (nedstående funktion).
         
-        
-        function sendRequest(){
-            //
+        function sendAnmodning(){
             $.ajax({
                 url: "main.php", //Henvender sig til PHP-filen og henter data.
                 success: //Hvis ovenstående process lykkes, kalder den nedenstående funktion.
