@@ -38,6 +38,8 @@ if ($conn->connect_error) {
 //Her indgår der MySQLi sprog, som fortæller: Hent data fra kolonnerne "placering", "temp" og "fugt" fra tabellen "SensorData", hvor den kun skal tag data fra rækken, hvis kolonne-værdien er "Indenfor". Derudover sortere den dataen efter den nyeste data (dvs. "seneste_daata).
 //DESC betyder at sortering sker fra bund til top (normal er det fra top til bund).
 //LIMIT fortæller, at den kun skal loade x-antal rækker (vores tilfælde én, da vi bare skal den seneste).
+
+//Her indgår der MySQLi sprog med opsat kriterier.
 $sql = "SELECT placering, temp, fugt FROM SensorData WHERE placering = 'Udenfor' ORDER BY seneste_data DESC LIMIT 1";
 
 
