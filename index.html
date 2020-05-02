@@ -67,7 +67,7 @@
 
 
     <script>
-
+                    
         sendAnmodning(); //Kalder funktionen sendRequest (nedstående funktion).
         
         function sendAnmodning(){
@@ -80,16 +80,18 @@
                     
                     var temp = parseFloat(oplysninger[0]);
                     
-                    if (temp > 0 && temp < 85) {
+                    if (temp >= 0) {
                             var afvigelse = "1.0";
-                        }
-                    else if (temp < 0 && temp < -20) {
+                    }
+                    else if (temp < 0 && temp >= -20) {
                             var afvigelse = "1.25";
-                        }
-                    else if (temp < -20 && temp < -40) {
+                    }
+                    else if (temp < -20) {
                             var afvigelse = "1.5";
-                        }
+                    }
+                    document.getElementById("afvg").innerHTML = afvigelse; //Skriver første værdi fra arrayet til ID'et: "temp-ind" i html
                     
+
                     document.getElementById("temp1").innerHTML = oplysninger[0]; //Skriver første værdi fra arrayet til ID'et: "temp-ind" i html
                     document.getElementById("fugt1").innerHTML = oplysninger[1]; //Skriver tredje værdi fra arrayet til ID'et: "fugt-ind" i html
                     document.getElementById("lok1").innerHTML = oplysninger[2]; //Skriver fjerde værdi fra arrayet til ID'et: "fugt-ud" i html
