@@ -12,7 +12,9 @@
 */
 
 
-// IP-adressen for serveren (localhost er bare et label, for den lokale IP-adresse)
+// IP-adressen for serveren (localhost er bare en label, for den lokale IP-adresse, som altid er og kan være 127.0.0.1)
+$servername = "localhost";
+
 $servername = "localhost";
 
 // Navnet på vores database
