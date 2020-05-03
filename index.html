@@ -8,7 +8,7 @@
         <meta charset="UTF-8">  
 
         <!--        Refererer til CSS-filen-->
-        <link rel="stylesheet" type="text/css" href="PHP-hent-data.php">
+        <link rel="stylesheet" type="text/css" href="PHP-HENT-DATA.php">
 
         <!--        Jquery library. Skal bruges til AJAX (skal vi bruge for at kunne reloade sensor værdier)-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -72,7 +72,7 @@
         
         function sendAnmodning(){
             $.ajax({
-                url: "main.php", //Henvender sig til PHP-filen og henter data.
+                url: "PHP-HENT-DATA.php", //Henvender sig til PHP-filen og henter data.
                 success: //Hvis ovenstående process lykkes.
                 function(data){
                     
