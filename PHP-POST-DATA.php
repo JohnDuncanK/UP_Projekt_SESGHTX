@@ -3,8 +3,6 @@
 // IP-adressen for serveren (localhost er bare en label, for den lokale IP-adresse, som altid er og kan være 127.0.0.1)
 $servername = "localhost";
 
-$servername = "localhost";
-
 // Navnet på vores database
 $dbname = "esp_data";
 
@@ -25,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $api_key = tjek_input($_POST["api_key"]); //Kalder funktionen "tjek_input" med den givende data. Dette er API-nøglen, som er sendt fra ESP-modulet.
     echo "Første if-statement";
     
-    //Hvis variablen ESP-modulets API-nøgle  har samme værdi som API-nøglen, skal den kalde funktionen "tjek_input" for hver variabel med den givende data, der er sendt fra ESP-modulet.
+    //Hvis API-nøgle har samme værdi, kald funktionen "tjek_input" for hver variabel med den givende data.
     if($api_key == $api_key_value) {
         $sensor = tjek_input($_POST["sensor"]);
         $placering = tjek_input($_POST["placering"]); 
@@ -38,11 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         // Tjekker forbindelsen
         if ($conn->connect_error) {
-            //Hvis der ikke kan forbindes, anullerer den resten af processen og fejlmeddeler denne besked, hvor "$conn->connect_error" returnere, hvad fejlen er.
+            //Hvis der ikke kan forbindes, annullerer den resten af processen og fejlmeddeler fejlen.
             die("Der kunne ikke forbindes til serveren. Fejlmeddelse: " . $conn->connect_error);
         } 
         
-        //Her indgår der MySQLi-sprog, som fortæller: Indset data til tabellen "SensorData" i kolonnerne "sensor", "placering", "temp" og "fugt", med værdierne fra variablerne "sensor", "placering", "temp" og "fugt".
+        //Her indgår der MySQLi-sprog, som indsætter data til database.
         $sql = "INSERT INTO SensorData (sensor, placering, temp, fugt)
         VALUES ('" . $sensor . "', '" . $placering . "', '" . $temp . "', '" . $fugt . "')";
         
