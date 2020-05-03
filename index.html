@@ -73,7 +73,7 @@
         function sendAnmodning(){
             $.ajax({
                 url: "main.php", //Henvender sig til PHP-filen og henter data.
-                success: //Hvis ovenstående process lykkes, kalder den nedenstående funktion.
+                success: //Hvis ovenstående process lykkes.
                 function(data){
                     
                     var oplysninger = data.split(",");//Splitter dataen op. Splitter ved hvert komma (,). Indsætter værdierne i arrayet "oplysninger".
@@ -97,7 +97,7 @@
                     document.getElementById("lok1").innerHTML = oplysninger[2]; //Indsætter lokationen
                 },
                 complete: function() { //Når alt behandling er færdig.
-                    setTimeout(sendRequest, 1000); //Kalder funktionen "sendRequest" med et efter 1 sekunder
+                    setTimeout(sendRequest, 1000); //Kalder funktionen "sendAnmodning" efter 1 sekunder
                 }
             });
         };
@@ -112,11 +112,14 @@
             var timer = new Date().getHours(); //Henter den lokale tid i timer fra computeren.
             var minutter = new Date().getMinutes(); //Henter den lokale tid i minutter fra computeren.
             var sekunder = new Date().getSeconds();
-
+            
+            if (timer < 10) { //Hvis timetallet er under 10, skal den tilføje "0" før timetallet 
+                timer = "0" + timer;
+            }
             if (minutter < 10) { //Hvis minuttallet er under 10, skal den tilføje "0" før minuttallet - fx 2 minutter = 02 
                 minutter = "0" + minutter;
             }
-            if (sekunder < 10) { //Hvis minuttallet er under 10, skal den tilføje "0" før minuttallet - fx 2 minutter = 02 
+            if (sekunder < 10) { //Hvis sekundtallet er under 10, skal den tilføje "0" før sekundtallet 
                 sekunder = "0" + sekunder;
             }
 
