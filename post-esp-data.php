@@ -1,17 +1,5 @@
 <?php
 
-/*
-  Rui Santos
-  Complete project details at https://RandomNerdTutorials.com/esp32-esp8266-mysql-database-php/
-  
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files.
-  
-  The above copyright notice and this permission notice shall be included in all
-  copies or substantial portions of the Software.
-*/
-
-
 // IP-adressen for serveren (localhost er bare en label, for den lokale IP-adresse, som altid er og kan være 127.0.0.1)
 $servername = "localhost";
 
@@ -35,7 +23,7 @@ $api_key= $sensor = $placering = $temp = $fugt = "";
 //Tjekker om request/anmodningens metoden er "Post"
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $api_key = tjek_input($_POST["api_key"]); //Kalder funktionen "tjek_input" med den givende data. Dette er API-nøglen, som er sendt fra ESP-modulet.
-    echo "entered first if-statement"; //Skal nok bare slettes
+    echo "Første if-statement";
     
     //Hvis variablen ESP-modulets API-nøgle  har samme værdi som API-nøglen, skal den kalde funktionen "tjek_input" for hver variabel med den givende data, der er sendt fra ESP-modulet.
     if($api_key == $api_key_value) {
@@ -43,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $placering = tjek_input($_POST["placering"]); 
         $temp = tjek_input($_POST["temp"]); 
         $fugt = tjek_input($_POST["fugt"]); 
-    echo "entered secound if-statement"; //Skal nok bare slettes
+    echo "Anden if-statement";
         
         // Opretter en forbindelse til databasen med de givne oplysninger: servername, username, password og databasenavn.
         $conn = new mysqli($servername, $username, $password, $dbname);
